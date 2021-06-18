@@ -44,6 +44,8 @@ hooks:
     build: |
         set -e
 
+        bin/console plugin:loaded
+
         # install nvm
         unset NPM_CONFIG_PREFIX
         export NVM_DIR="$PLATFORM_APP_DIR/.nvm"
