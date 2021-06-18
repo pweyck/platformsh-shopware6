@@ -44,7 +44,7 @@ hooks:
     build: |
         set -e
 
-        bin/console plugin:loaded
+        DATABASE_URL="mysql://_placeholder.test" bin/console plugin:loaded
 
         # install nvm
         unset NPM_CONFIG_PREFIX
