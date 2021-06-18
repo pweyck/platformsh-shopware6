@@ -40,7 +40,7 @@ class Kernel extends \Shopware\Core\Kernel
 
         $reflection = new \ReflectionMethod(\Shopware\Core\Kernel::class, 'initializeDatabaseConnectionVariables');
         if (!$reflection->isPrivate()) {
-            parent::initializeDatabaseConnectionVariables();
+            // parent::initializeDatabaseConnectionVariables();
         }
     }
 }
