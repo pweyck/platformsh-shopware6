@@ -22,5 +22,13 @@
             <argument type="string">%kernel.plugin_infos%</argument>
             <tag name="console.command"/>
         </service>
+
+        <service id="Shopware\Core\Framework\Plugin\BundleConfigGenerator" class="Shopware\Production\BundleConfigGenerator">
+            <argument type="service" id="kernel" />
+        </service>
+
+        <service id="Shopware\Core\Framework\App\ActiveAppsLoader" class="Shopware\Production\ActiveAppsLoader">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+        </service>
     </services>
 </container>
