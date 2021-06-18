@@ -44,9 +44,6 @@ hooks:
     build: |
         set -e
 
-        export DATABASE_URL="mysql://_placeholder.test"
-        bin/console -vvv plugin:loaded
-
         # install nvm
         unset NPM_CONFIG_PREFIX
         export NVM_DIR="$PLATFORM_APP_DIR/.nvm"
@@ -62,8 +59,15 @@ hooks:
 
         # Disable UI installer
         touch install.lock
+
+        # list loaded plugins
         bin/console plugin:loaded
 
+        # build javascript
+        bin/build-js.sh
+
+        # install assets
+        bin/console assets:install
     deploy: |
         set -e
 
