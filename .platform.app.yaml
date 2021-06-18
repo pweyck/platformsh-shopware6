@@ -59,6 +59,7 @@ hooks:
 
         # Disable UI installer
         touch install.lock
+        bin/console plugin:list
 
     deploy: |
         set -e
@@ -98,6 +99,8 @@ hooks:
             touch $PLATFORM_APP_DIR/installer/installed
         fi;
 
+        # register new and update existining scheduled tasks
+        # bin/console scheduled-task:register
         # optional: run migration automatically with deploy
         # bin/console database:migrate --all
         bin/console cache:clear
@@ -188,3 +191,8 @@ workers:
         commands:
             start: |
                 bin/console messenger:consume default --memory-limit=$(cat /run/config.json | jq .info.limits.memory)M --time-limit=295
+    scheduled-tasks:
+        disk: 128
+        commands:
+            start: |
+                bin/console scheduled-task:run --memory-limit=$(cat /run/config.json | jq .info.limits.memory)M --time-limit=295
