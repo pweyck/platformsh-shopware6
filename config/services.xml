@@ -7,10 +7,20 @@
         <import resource="services/defaults.xml" />
     </imports>
 
+    <parameters>
+        <parameter key="env(REDIS_URL)">redis://localhost</parameter>
+        <parameter key="env(APP_URL)">http://localhost</parameter>
+    </parameters>
+
     <services>
         <service id="Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler">
             <argument>%env(string:REDIS_URL)%</argument>
             <factory class="Symfony\Component\HttpFoundation\Session\Storage\Handler\SessionHandlerFactory" method="createHandler"/>
+        </service>
+
+        <service id="Shopware\Production\Command\LoadedPluginListCommand" >
+            <argument type="string">%kernel.plugin_infos%</argument>
+            <tag name="console.command"/>
         </service>
     </services>
 </container>

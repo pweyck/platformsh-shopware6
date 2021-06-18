@@ -59,7 +59,7 @@ hooks:
 
         # Disable UI installer
         touch install.lock
-        bin/console plugin:list
+        bin/console plugin:loaded
 
     deploy: |
         set -e
